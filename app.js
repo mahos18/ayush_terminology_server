@@ -2,9 +2,11 @@ require('dotenv').config();
 
 const authMiddleware = require('./middleware/abhaMiddleware');
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const mongoose = require('./config/db');
 app.use(express.json());
+app.use(cors());
 
 // Routes
 app.use('/api', authMiddleware, require('./routes/bundleRoutes'));
