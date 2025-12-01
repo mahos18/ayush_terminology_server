@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-app.use('/api', authMiddleware, require('./routes/bundleRoutes'));
+app.use('/api/bundle', authMiddleware, require('./routes/bundleRoutes'));
 app.use('/api/expand', authMiddleware, require('./routes/expand'));
 app.use('/api/translate', authMiddleware, require('./routes/translate'));
 app.use('/api/abha', require('./middleware/abhavalidator.js'));
