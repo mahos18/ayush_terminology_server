@@ -6,6 +6,10 @@ const cors = require('cors');
 const app = express();
 const mongoose = require('./config/db');
 const biomedRoutes = require("./routes/biomedsearch");
+
+const expandRouter = require('./routes/expand.js');
+const translateRouter = require('./routes/universalExpand.js');
+
 app.use(express.json());
 app.use(cors());
 
@@ -16,6 +20,8 @@ app.use('/api/expand', authMiddleware, require('./routes/expand'));
 app.use('/api/translate', authMiddleware, require('./routes/translate'));
 app.use('/api/abha', require('./middleware/abhavalidator.js'));
 app.use('/api/report', authMiddleware, require('./routes/report'));
+app.use('/', expandRouter);      // new /ValueSet/$expand
+app.use('/', translateRouter);   // new /ConceptMap/$translate
 
 app.use("/api/search-biomed-icd", biomedRoutes);
 const PORT = process.env.PORT || 3001;
